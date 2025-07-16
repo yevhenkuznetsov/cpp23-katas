@@ -30,7 +30,7 @@
         "eamodio.gitlens",
         "BazelBuild.vscode-bazel",
         "ms-vscode.cpptools",
-        "llvm-vs-code-extensions.vscode-clangd",
+        "llvm-vs-code-extensions.vscode-clangd"
       ],
       "settings": {
         "editor.formatOnSave": false,
