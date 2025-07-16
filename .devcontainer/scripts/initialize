@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Prevents mounting ~/.cache/... folders as root when they don't exist yet
+mkdir -p ~/.cache/bazel
+mkdir -p ~/.cache/bazelisk
+
+# Create bash history file to persist the history
+export DEVCONTAINER_DATA_ON_HOST=~/.devcontainers/`basename $PWD`
+mkdir -p $DEVCONTAINER_DATA_ON_HOST
+touch $DEVCONTAINER_DATA_ON_HOST/.bash_history

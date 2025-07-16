@@ -1,0 +1,2 @@
+# Ignore compiler errors when generating compile_commands.json
+build:extract --cxxopt=-Wno-error
