@@ -32,3 +32,55 @@ jobs:
     - name: Build and test with Bazel
       run: |
         docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace cpp23-katas:latest bash -c "bazel build //... && bazel test //..."
+
+  style-checks:
+    name: Style Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .devcontainer
+        file: .devcontainer/Dockerfile
+        push: false
+        load: true
+        tags: cpp23-katas:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Run style checks
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace cpp23-katas:latest bash -c "find .github/scripts -name 'style-*.sh' -exec bash {} \;"
+        
+  sca-checks:
+    name: Static Code Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .devcontainer
+        file: .devcontainer/Dockerfile
+        push: false
+        load: true
+        tags: cpp23-katas:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Run static code analysis
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace cpp23-katas:latest bash -c "find .github/scripts -name 'sca-*.sh' -exec bash {} \;"
