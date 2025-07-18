@@ -90,3 +90,32 @@ jobs:
         docker run -e GITHUB_REF -e GITHUB_EVENT_NAME -e GITHUB_BASE_REF \
           --rm -v ${{ github.workspace }}:/workspace -w /workspace cpp23-katas:latest \
           bash -c "set -eo pipefail && for script in \$(find .github/scripts -name 'sca-*.sh'); do echo \"Running \$script\"; bash \"\$script\" || exit 1; done"
+
+  benchmarks:
+    name: Performance Benchmarks
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .devcontainer
+        file: .devcontainer/Dockerfile
+        push: false
+        load: true
+        tags: cpp23-katas:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Run benchmarks
+      run: |
+        docker run -e GITHUB_REF -e GITHUB_EVENT_NAME -e GITHUB_BASE_REF \
+          --rm -v ${{ github.workspace }}:/workspace -w /workspace cpp23-katas:latest \
+          bash -c "set -eo pipefail && bash .github/scripts/benchmarks.sh"

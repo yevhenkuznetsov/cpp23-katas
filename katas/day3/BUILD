@@ -18,6 +18,7 @@ cc_test(
 cc_binary(
     name = "benchmark_day3",
     srcs = ["src/benchmark_day3.cpp"],
+    tags = ["benchmark"],
     deps = [
         ":day3",
         "@google_benchmark//:benchmark",
