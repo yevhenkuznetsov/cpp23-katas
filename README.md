@@ -25,7 +25,7 @@ bazel test //...
 |:-:|-|-|-|:-:|
 | 01 | Even‑Number Squares (Ranges intro)  | `std::views::filter`, `std::views::transform`, `std::ranges::to` | [`katas/day1`](katas/day1) | ✅ |
 | 02 | Structured Bindings & Tuples        | structured bindings, `std::tie`, `std::apply`   | [`katas/day2`](katas/day2) | ✅ |
-| 03 | Optionals & Variants                | `std::optional`, `std::variant`, `std::visit`   | [`katas/day3`](katas/day3) | ⏳ |
+| 03 | Optionals & Variants                | `std::optional`, `std::variant`, `std::visit`   | [`katas/day3`](katas/day3) | ✅ |
 | 04 | Concepts & Type Constraints         | `concept`, `requires`, SFINAE replacement       | [`katas/day4`](katas/day4) | ⏳ |
 | 05 | Ranges - Lazy CSV Parser            | `std::views::split`, `std::views::transform`    | [`katas/day5`](katas/day5) | ⏳ |
 | 06 | Coroutines ‑ Generator Pattern      | `std::generator`, `co_yield`                    | [`katas/day6`](katas/day6) | ⏳ |

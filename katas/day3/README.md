@@ -1,0 +1,1 @@
+Shows error-handling and pattern-matching with std::variant (via std::visit), convenience look-ups with std::optional, plus a micro-benchmark comparing successful look-ups to failed (std::nullopt) look-ups.
