@@ -31,6 +31,7 @@ RUN curl -f -L -o /usr/local/bin/bazelisk \
 
 COPY .clang-format /.clang-format
 COPY .clang-tidy /.clang-tidy
+COPY .clangd /.clangd
 
 ARG CONTAINER_USER=developer
 ARG WORKSPACE_FOLDER=/workspace
