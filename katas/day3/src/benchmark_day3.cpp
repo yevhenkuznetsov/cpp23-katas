@@ -6,7 +6,7 @@ static std::vector<int> v(1000, 1);
 
 static void optional_lookup(benchmark::State& state)
 {
-    for (auto _ : state)
+    for ([[maybe_unused]] auto _ : state)
         benchmark::DoNotOptimize(lookup(v, static_cast<std::size_t>(state.range(0))));
 }
 
